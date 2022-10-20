@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script
+      src="https://unpkg.com/react@17/umd/react.development.js"
+      crossorigin
+    ></script>
+   <script
+      src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        // props : propertise seting with react component => pass object as parameter in child component and set values at the time of rednering
+        
+      function Child_A({name , age , country}){
+        return(
+            <div>
+                <h1>Hello {name}</h1>
+                <h2>Your age{age}</h2>
+                <h3> {country}</h3>
+            </div>
+        )
+      }
+      // set default value if there is no value passed for param
+      function Child_B({name , age =' 76' , country ='India'}){
+        return(
+            <div>
+                <h1>Hello {name}</h1>
+                <h2>Your age{age}</h2>
+                <h3>{country}</h3>
+            </div>
+        )
+      }
+      
+
+      function Parent(){ // if there no value passed then auomaticlly default vaule set if deifined
+        return(
+         <div>
+            <Child_A name ='vijay' age =' 20' country =' india'/>
+            <Child_B name ='Thoms'  country =' USA'/>
+            <Child_B />
+          </div>
+        );
+      }
+
+             ReactDOM.render(<Parent /> , document.getElementById("root"));
+
+    </script>
+</body>
+</html>

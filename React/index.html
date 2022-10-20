@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Document</title>
+    <!-- this link used for react method and propery -->
+    <script
+      src="https://unpkg.com/react@17/umd/react.development.js"
+      crossorigin
+    ></script>
+    <!-- this link will provide react dom features -->
+    <script
+      src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+
+    <!-- thsi for jsx to js bable link -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!-- type atribute for bable used -->
+    <script type="text/babel">
+      //1 ****hello using normal dom*******
+      // let root = document.getElementById("root").innerHTML = "<h1>Hello</h1>"
+
+      //2 ****** add hello into root using react : **************
+      // let root = document.getElementById("root");
+      //   let elm = React.createElement("h1", { children: ["hello"] }); // inside the object
+
+      //   console.log(elm);
+      //   // from virtual dom render method =>  ReactDOM.render showes content to given src
+      //   ReactDOM.render(elm, root);
+
+      //3 *** now with  jxs easy way ***\\
+
+      // functional component : Element is functional component here
+
+      // jsx
+      // function Element() {  // js
+
+      //     return(
+      //     <h1>Hello</h1> // html  // this code will convert into js by babel transpiler
+      //   );
+      // }
+
+      // // here how function component passed as parameter with </>
+      // ReactDOM.render(<Element/> , document.getElementById('root'))
+
+      // 4 *** make Parent for child component rendering because we call render method only one time :
+
+      // function Child(){
+      //   return (
+      //     <h1>Hello</h1>
+      //   )
+      // }
+      // function Child2(){
+      //   return (
+      //     <h1>World !</h1>
+      //   )
+      // }
+
+      // function Parent() {
+      //   return(
+      //        <Child/>
+      //       )
+      // }
+      //  ReactDOM.render(<Parent/> , document.getElementById('root'));
+
+      // 5 *** Reusability feture : reuse one component into app for that we need to make another parent for childs inside return statement
+      // simply use div or
+      //  use <Reac.fragmentaion><Reac.fragmentaion/> like this or like <></> this way both are same
+      function Child() {
+        return <h1>Hello</h1>;
+      }
+      function Child2() {
+        return <h1>World !</h1>;
+      }
+
+      function Child_A({name , age , country}){
+        return(
+            <div>
+                <h1>Hello {name}</h1>
+                <h2>Your {age}</h2>
+                <h3> {country}</h3>
+            </div>
+        )
+      }
+
+      function Parent() {
+        // reusablity =>
+
+        // Fragment with div || section :
+
+        // return (
+        //   <div>
+        //     <Child />
+        //     <Child2 />
+        //     <Child />
+        //     <Child />
+        //     <Child2 />
+        //     <Child2 />
+        //   </div>
+        // );
+
+     //  Fragment with <React.Fragment></React.Fragment> || <></> :
+
+        return (
+          <React.Fragment>
+            <Child />
+            <Child2 />
+            <Child />
+            <Child2 />
+            <Child_A name ="hero" age ='0' country ='metavers' />
+          </React.Fragment>
+        );
+      }
+      ReactDOM.render(<Parent />, document.getElementById("root")); // render method call only one time
+    </script>
+  </body>
+</html>

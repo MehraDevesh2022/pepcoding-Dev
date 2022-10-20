@@ -1,0 +1,16 @@
+React works with component
+work with JSX  : JXS work with html and js together , with jxs function declartion not allowd and also loop is not allowd in retun statment
+react render method used for show element provided bu react dom => ReactDom.render()
+function component :  
+
+jsx never supported by  js > for that we use babel
+Babel is transpiler : used for convert jsx to js for brwoser taki brwoser samjh paye
+
+Babel alertnatvie for jxs transpiler => swe and webpacks
+
+
+*2 => hum multiple child component ko render kr skte hai ek parent component ke andar kyu ki render call ek baar ho skti hai
+
+reuseability option we have => hum ek component ko baar baar use kr skte hainuske liye child component ke liye ek parent bnana hota hai inside the retun statment
+make div as parent for  child component or use react fragment <></> like this or like <React.fragment></React.fragment> like this
+

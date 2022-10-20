@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script
+      src="https://unpkg.com/react@17/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      // make a counter using class base component
+     // 1st : extends React.Component  and that method provide react Component to Counter class
+    // use render method to showCase data like in function component we are returning simplie inside return statemet here we need user render method first
+      class Counter extends React.Component {
+        constructor() {
+          super(); 
+
+          this.state ={ // this is the state of elem and this is an object given by react . state is object here pointed by this
+            count : 0,
+           };
+          }
+        // increment :
+        increment =() =>{
+          this.setState({
+            count : this.state.count+1
+          })
+        } 
+        
+        // decrement :
+        decrement =() =>{
+            // setState is responsbile for  changing the state of element
+        this.setState({
+           count : this.state.count-1
+        })
+    }
+          
+      
+        
+        render() {
+          return (
+            <div>
+                <h1>{this.state.count}</h1>
+              <button onClick ={this.increment}>+</button>
+              <button onClick ={this.decrement}>-</button>
+            </div>
+          ); 
+        }
+    }
+        
+    
+     ReactDOM.render(<Counter/> , document.getElementById('root'));
+    </script>
+  </body>
+</html>

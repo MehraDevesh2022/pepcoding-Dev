@@ -1,0 +1,14 @@
+{
+  "name": "day-5",
+  "version": "1.0.0",
+  "description": "npm example",
+  "main": "01-child_process.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "itsCodeWithdev",
+  "license": "ISC",
+  "dependencies": {
+    "figlet": "^1.5.2"
+  }
+}
