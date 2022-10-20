@@ -5,8 +5,8 @@ const path = require("path");
 // console.log("this is with concatintaion encoding : " + readFile); // encode this way or use utf-8
 
 // read file usinging utf-8
-//  readFile = fs.readFileSync('./file.txt' ,'utf-8')
-// console.log(readFile);
+ readFile = fs.readFileSync("../text", "utf-8");
+console.log(readFile);
 
 
 // wirtefile => if there is no such file available then it will genrated automatically with same name passed at pramas
@@ -56,13 +56,13 @@ const path = require("path");
 
 // copy one file one dir to other ( src to dsetination) =>
 
-let srcFilePath = 'M:\\pep\\NodeJs\\Day-5\\child process.png'
+// let srcFilePath = 'M:\\pep\\NodeJs\\Day-5\\child process.png'
 
-let dstFolderPath = 'M:\\pep\\NodeJs'
+// let dstFolderPath = 'M:\\pep\\NodeJs'
 
-let tobecopiFileName = path.basename(srcFilePath) //child process.png
- // join will concact the tobecopiFileName to dstFolderPath ending 
-let makeDstPath = path.join(dstFolderPath , tobecopiFileName); //  making dstPath for file  (M:\\pep\\NodeJs\\child process.png)
+// let tobecopiFileName = path.basename(srcFilePath) //child process.png
+//  // join will concact the tobecopiFileName to dstFolderPath ending 
+// let makeDstPath = path.join(dstFolderPath , tobecopiFileName); //  making dstPath for file  (M:\\pep\\NodeJs\\child process.png)
 
-fs.copyFileSync(srcFilePath , makeDstPath);
-console.log("file is copied successfully"); // img copied successfully into M:\\pep\\NodeJs' with new path  M:\\pep\\NodeJs\\child process.png
+// fs.copyFileSync(srcFilePath , makeDstPath);
+// console.log("file is copied successfully"); // img copied successfully into M:\\pep\\NodeJs' with new path  M:\\pep\\NodeJs\\child process.png
