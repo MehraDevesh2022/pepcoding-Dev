@@ -4,6 +4,8 @@
 // 2: fullfilment and then sattled
 // 3: reject and cacth sattled
 
+// promises are store at microtask queue and its  priority more then call-back queue 
+// used callback and promise basically handle serial and parllel task in code 
 const fs = require("fs");
 //*************************** how call-back handle a async operation **************************:
 

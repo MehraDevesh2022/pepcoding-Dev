@@ -1,4 +1,4 @@
-let myPromise = new Promise(function (reject, resolve) {
+let myPromise = new Promise(function (resolve, reject) {
   let a = "PepCoding";
   let b = "PepCoding";
 
@@ -7,12 +7,12 @@ let myPromise = new Promise(function (reject, resolve) {
   } else {
     reject("result is rejected"); // this one attched to catch
   }
-})
+});
 
   myPromise.then(function (result) {
     console.log(result);
   })
   .catch(function (result) {
-    // console.log(result);
+    console.log(result);
   });
 
