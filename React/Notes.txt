@@ -1,6 +1,6 @@
 React works with component
-work with JSX  : JXS work with html and js together , with jxs function declartion not allowd and also loop is not allowd in retun statment
-react render method used for show element provided bu react dom => ReactDom.render()
+work with JSX  : JXS work with html and js together , with jxs function declartion not allowd and also loop is not allowd in return statment
+react render method used for show element provided by react dom => ReactDom.render()
 function component :  
 
 jsx never supported by  js > for that we use babel

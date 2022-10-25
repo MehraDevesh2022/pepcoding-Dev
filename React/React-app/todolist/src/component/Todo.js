@@ -1,44 +1,42 @@
 import React from "react";
-
 export class Todo extends React.Component {
   constructor() {
     super();
     this.state = {
       tasks: [],
-       currTask: "",
+      currTask: "",
     };
-    
-  }
-    handleChange =(e) =>{
-       // using target property :
-          this.setState({
-            currTask: e.target.value,
-          });
-   }
-   handleAddTask =() =>{
- 
-    this.setState({
-      
-      tasks : [...this.state.tasks , {task : this.state.currTask , id :this.state.tasks.length+1}],
-      currTask : " "
-    })
-   }
-   handleDelete =(taskId) =>{
-        let newArray = this.state.tasks.filter((task) =>{
-       return task.id !=taskId;           
-        })
-        this.setState({
-            tasks : [...newArray]
-        })
-   }
 
-  
+  }
+  handleChange = (e) => {
+    // using target property :
+    this.setState({
+      currTask: e.target.value,
+    });
+  }
+  handleAddTask = () => {
+
+    this.setState({
+
+      tasks: [...this.state.tasks, { task: this.state.currTask, id: this.state.tasks.length + 1 }],
+      currTask: " "
+    })
+  }
+  handleDelete = (taskId) => {
+    let newArray = this.state.tasks.filter((task) => {
+      return task.id != taskId;
+    })
+    this.setState({
+      tasks: [...newArray]
+    })
+  }
 
   render() {
     return (
       <div>
-        <input type="text" placeholder="Add your task" value={this.state.currTask} onChange={this.handleChange}/>
-        <button onClick={this.handleAddTask}>Add-Task</button>
+         
+        <input type="text" placeholder="Add your task" value={this.state.currTask} onChange={this.handleChange} />
+        <button onClick={this.handleAddTask}> Add-Task </button>
 
         <ol>
           {this.state.tasks.map((taskObj) => {
