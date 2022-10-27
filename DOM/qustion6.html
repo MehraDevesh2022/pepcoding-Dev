@@ -108,24 +108,23 @@
     </div>
     <script>
       // Q Make the filter work
-      let select = document.querySelector("select");
-      select.addEventListener("change", function () {
-        let filterVal = select.value;
-        let allTickets = document.querySelectorAll(".price");
-        if (filterVal == "none") {
-          for (let i = 0; i < allTickets.length; i++) {
-            allTickets[i].parentElement.style.display = "block";
-          }
-        } else {
-          for (let i = 0; i < allTickets.length; i++) {
-            if (allTickets[i].getAttribute("data-category") == filterVal) {
-              allTickets[i].parentElement.style.display = "block";
-            } else {
-              allTickets[i].parentElement.style.display = "none";
-            }
-          }
-        }
-      });
+  let genereType = document.querySelector('select');
+    genereType.addEventListener('change' , function(){
+       let filterVal = genereType.value;
+       let allTicktes = document.querySelectorAll('.price');
+                 for(let movie  of allTicktes){
+                  if(filterVal =='none')
+                   movie.parentElement.style.display = 'block' 
+                 else if(movie.getAttribute('data-category') ==filterVal)
+                     movie.parentElement.style.display = "block";
+                 else
+                     movie.parentElement.style.display = "none";
+                 
+                }
+           
+    })
+
+   
     </script>
   </body>
 </html>
