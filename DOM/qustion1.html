@@ -7,7 +7,7 @@
     <title>Document</title>
   </head>
   <body>
-    <button>Say Hello</button>
+    <button onclick="clickME()">Say Hello</button>
 
     
 
@@ -15,14 +15,19 @@
      //Q1 on Clicking the Button append hello to the page
       // qS --> this method used to identify to the elements from the element
       
-     let btn = document.querySelector("button");
-     btn.addEventListener("click" , function(e){
-      let divElm = document.createElement("div");
-      divElm.innerText ="Hello"
-      let body = document.querySelector("body");
-      body.appendChild(divElm);
-     })
-
+      //  let btn = document.querySelector('button');
+      //  btn.addEventListener('click' , function(){
+        //    let body = document.querySelector('body');
+        //    let addElm = document.createElement('p');
+        //    addElm.innerHTML ='Say Hello' 
+        //    body.appendChild(addElm); 
+        // } )
+       function clickME(){
+           let body = document.querySelector('body');
+           let addElm = document.createElement('p');
+           addElm.innerHTML ='Say Hello' 
+           body.appendChild(addElm); 
+        }
    
     </script>  
   </body>

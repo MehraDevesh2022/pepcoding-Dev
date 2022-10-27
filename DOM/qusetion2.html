@@ -23,13 +23,16 @@
       // Fix the list by inserting the missing element using querySelectorAll and insertBefore
 
      
-      // querySelectorAll provides the Node list an array like structure
-      let allList = document.querySelectorAll("li");
-     let EighthElm = allList[6]; // querySelectorall provides the array like indexing of the elements
-     let SeventhElm  = document.createElement("li");
-     SeventhElm.innerText = "7";
-     let list = document.querySelector("ul");
-     list.insertBefore(SeventhElm , EighthElm);
+      // querySelectorAll provides the Node list an array like structure only Loop works here array methods are not work here
+      let ul = document.querySelector('ul');
+      let allListItem = document.querySelectorAll('li');
+      let sevenList = document.createElement('li'); 
+      let eightList = allListItem[6];
+      sevenList.innerText ='7'
+       ul.insertBefore(sevenList , eightList);
+      
+
+      
 
      
 
