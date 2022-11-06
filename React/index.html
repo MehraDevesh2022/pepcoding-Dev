@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Document</title>
-    <!-- this link used for react method and propery -->
+    <!-- this link used for react method and property -->
     <script
       src="https://unpkg.com/react@17/umd/react.development.js"
       crossorigin
@@ -28,8 +28,8 @@
       //1 ****hello using normal dom*******
       // let root = document.getElementById("root").innerHTML = "<h1>Hello</h1>"
 
-      //2 ****** add hello into root using react : **************
-      // let root = document.getElementById("root");
+        // 2 ****** add hello into root using react : **************
+       //   let root = document.getElementById("root");
       //   let elm = React.createElement("h1", { children: ["hello"] }); // inside the object
 
       //   console.log(elm);
@@ -67,11 +67,12 @@
       // function Parent() {
       //   return(
       //        <Child/>
+      //        <Child2/>
       //       )
       // }
       //  ReactDOM.render(<Parent/> , document.getElementById('root'));
 
-      // 5 *** Reusability feture : reuse one component into app for that we need to make another parent for childs inside return statement
+      // 5 *** Reusability feature : reuse one component into app for that we need to make another parent for childs inside return statement
       // simply use div or
       //  use <Reac.fragmentaion><Reac.fragmentaion/> like this or like <></> this way both are same
       function Child() {
@@ -119,7 +120,7 @@
           </React.Fragment>
         );
       }
-      ReactDOM.render(<Parent />, document.getElementById("root")); // render method call only one time
+      ReactDOM.render(<Parent/>, document.getElementById("root")); // render method call only one time
     </script>
   </body>
 </html>

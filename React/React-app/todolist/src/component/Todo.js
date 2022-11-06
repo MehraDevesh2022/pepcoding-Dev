@@ -21,17 +21,21 @@ export class Todo extends React.Component {
       tasks: [...this.state.tasks, { task: this.state.currTask, id: this.state.tasks.length + 1 }],
       currTask: " "
     })
+
   }
-  handleDelete = (taskId) => {
-    let newArray = this.state.tasks.filter((task) => {
-      return task.id != taskId;
+
+  handleDelete = (id) => {
+    let newArr = this.state.tasks.filter((myVal) => {
+      return myVal.id != id
     })
+
     this.setState({
-      tasks: [...newArray]
+      tasks: [...newArr]
     })
   }
 
   render() {
+
     return (
       <div>
          
