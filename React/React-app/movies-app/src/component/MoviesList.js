@@ -1,19 +1,43 @@
 import React, { Component } from "react";
 import { movies } from "../movieData";
-
+import axios from "axios";
 export class MoviesList extends Component {
 
   constructor(){
     super()
     this.state= {
       hover : "",
-      pageArr : [1]
+      pageArr : [1],
+      movieArr : [],
+      currPage : 1
     }
   }
 
+  // componentDidMount method only runs one time in react life cycle when data requird so we need this code responsive for more uses so make new function with same code
+ async componentDidMount(){
+   let res = await axios('https://api.themoviedb.org/3/movie/popular?api_key=4d8e0bed443e8ebba0ce19fbfe2b872c&language=en-US&page=1')
+   let movieDataObj = res.data;
+  // console.log(movieDataObj.results);
+   this.setState({
+    movieArr : [...movieDataObj.results]
+   })
+  }
+
+ changeMovies = async() =>{
+   let res = await axios(`https://api.themoviedb.org/3/movie/popular?api_key=4d8e0bed443e8ebba0ce19fbfe2b872c&language=en-US&page=${this.state.currPage}`)
+    let movieDataObj = res.data;
+    // console.log(movieDataObj.results);
+    this.setState({
+      movieArr: [...movieDataObj.results]
+    })
+  }
+
+  handleNextPage = ()=>{
+
+  }
 
   render() {
-    let movieArray = movies.results;
+
     return (
       <>
         <div>
@@ -23,12 +47,13 @@ export class MoviesList extends Component {
         </div>
 
         <div className="movies-list">
-          {movieArray.map((arrayElm) => {
+          {this.state.movieArr.map((arrayElm) => {
             return (
               <div
                 className="card movie-card"
                 // onMouseEnter and onMouseDown both are same like doms mouseOver and mouseDown
-                onMouseEnter={() => this.setState({ hover: arrayElm.id }) } onMouseLeave= {() => this.setState({hover : ''})}
+                onMouseEnter={() => this.setState({ hover: arrayElm.id }) } 
+                onMouseLeave= {() => this.setState({hover : ''})}
               >
                 <img
                   src={`https://image.tmdb.org/t/p/original${arrayElm.backdrop_path}`}
