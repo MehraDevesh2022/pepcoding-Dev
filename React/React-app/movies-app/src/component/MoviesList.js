@@ -33,7 +33,31 @@ export class MoviesList extends Component {
   }
 
   handleNextPage = ()=>{
+    let tempArr =[];
+    for(let i=1; i<=this.state.pageArr.length+1; i++){
+      tempArr.push(i);
+    }
+    console.log("hello" ,tempArr);
+  this.setState({
+    pageArr : [...tempArr],
+    currPage : this.state.currPage+1
+  },this.changeMovies) // this is how in after setstate we have option to call function
+  }
 
+  handlePreviousPage = ()=>{
+    if(this.state.currPage !=1){
+      this.setState({
+        currPage: this.state.currPage-1
+      }, this.changeMovies)
+    }
+  }
+
+  handleValuePage =(pageValue)=>{
+    if(pageValue != this.state.currPage){
+      this.setState({
+        currPage : pageValue
+      },this.changeMovies)
+    }
   }
 
   render() {
@@ -87,22 +111,20 @@ export class MoviesList extends Component {
           <nav aria-label="Page navigation example">
             <ul class="pagination">
               <li class="page-item">
-                <a class="page-link" href="#">
+                <a class="page-link" onClick={this.handlePreviousPage}>
                   Previous
                 </a>
               </li>
-                 {this.state.pageArr.map((value) =>{
-                     <li class="page-item">
-                       <a class="page-link" href="#">
-                        {value}
-                      
-                       </a>
-                     </li>
 
-
-                 })}
+               {this.state.pageArr.map((pageVal) => {
+                 return (<li class="page-item">
+                   <a class="page-link" onClick={()=>this.handleValuePage(pageVal)}>
+                     {pageVal}
+                   </a>
+                 </li>)
+  })}
               <li class="page-item">
-                <a class="page-link" href="#">
+                <a class="page-link" onClick={this.handleNextPage}>
                   Next
                 </a>
               </li>
