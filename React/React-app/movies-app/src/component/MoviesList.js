@@ -37,7 +37,6 @@ export class MoviesList extends Component {
     for(let i=1; i<=this.state.pageArr.length+1; i++){
       tempArr.push(i);
     }
-    console.log("hello" ,tempArr);
   this.setState({
     pageArr : [...tempArr],
     currPage : this.state.currPage+1
