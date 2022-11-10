@@ -33,14 +33,22 @@ export class MoviesList extends Component {
   }
 
   handleNextPage = ()=>{
-    let tempArr =[];
-    for(let i=1; i<=this.state.pageArr.length+1; i++){
-      tempArr.push(i);
+    console.log(this.state.currPage);
+    console.log(this.state.pageArr.length );
+    if(this.state.pageArr.length === this.state.currPage){
+      let tempArr = [];
+      for (let i = 1; i <= this.state.pageArr.length + 1; i++) {
+        tempArr.push(i);
+      }
+      this.setState({
+        pageArr: [...tempArr],
+        currPage: this.state.currPage + 1
+      }, this.changeMovies) // this is how in after setstate we have option to call function
+    } else{
+       this.setState({
+         currPage: this.state.currPage + 1
+       }, this.changeMovies)
     }
-  this.setState({
-    pageArr : [...tempArr],
-    currPage : this.state.currPage+1
-  },this.changeMovies) // this is how in after setstate we have option to call function
   }
 
   handlePreviousPage = ()=>{
