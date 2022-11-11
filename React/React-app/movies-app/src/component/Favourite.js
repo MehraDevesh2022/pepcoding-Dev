@@ -1,6 +1,17 @@
 import React, { Component } from "react";
 import { movies } from "../movieData";
-export class MyFavourite extends Component {
+export class Favourite extends Component {
+   
+    constructor(){
+        super();
+        this.state={
+            genres :[],
+           currGenre : "All genre"
+        }
+    }
+   
+   
+   
     render() {
         let genreIdObj = { "genres": [{ "id": 28, "name": "Action" }, { "id": 12, "name": "Adventure" }, { "id": 16, "name": "Animation" }, { "id": 35, "name": "Comedy" }, { "id": 80, "name": "Crime" }, { "id": 99, "name": "Documentary" }, { "id": 18, "name": "Drama" }, { "id": 10751, "name": "Family" }, { "id": 14, "name": "Fantasy" }, { "id": 36, "name": "History" }, { "id": 27, "name": "Horror" }, { "id": 10402, "name": "Music" }, { "id": 9648, "name": "Mystery" }, { "id": 10749, "name": "Romance" }, { "id": 878, "name": "Science Fiction" }, { "id": 10770, "name": "TV Movie" }, { "id": 53, "name": "Thriller" }, { "id": 10752, "name": "War" }, { "id": 37, "name": "Western" }] }
 
@@ -26,8 +37,9 @@ export class MyFavourite extends Component {
                     <div className="col-3">
                         <ul class="list-group genre-selector">
                         {tempArr.map((generName) =>(
-
-                          <li class="list-group-item">{generName}</li>
+                          this.state.currGenre === generName ?
+                                <li style={{ backgroundColor:"#3f51b5" , color :"white" , fontWeight : "bolder" , textAlign : "center"}} className="list-group-item">{generName}</li>
+                                : <li style={{ color: "#3f51b5" ,textAlign: "center" }} className="list-group-item">{generName}</li>
                       ))}
                             
                         </ul>
@@ -98,4 +110,4 @@ export class MyFavourite extends Component {
 
 }
 
-export default MyFavourite
+export default Favourite

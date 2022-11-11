@@ -95,17 +95,9 @@ export class MoviesList extends Component {
 
                 <h5 className="card-title movie-title">{arrayElm.title}</h5>
 
-                <div
-                  className="button-wrapper "
-                  style={{ display: "flex", justifyContent: "center" }}
-                >
+                <div className="button-wrapper " style={{ display: "flex", justifyContent: "center" }}>
                   {this.state.hover == arrayElm.id && (
-                    <a
-                      href="#"
-                      className="btn btn-primary movie-button text-center"
-                    >
-                      Add favourite
-                    </a>
+                    <a href="#" className="btn btn-primary movie-button text-center"> Add favourite</a>
                   )}
                 </div>
               </div>

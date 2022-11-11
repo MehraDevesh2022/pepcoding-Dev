@@ -21,3 +21,10 @@ Component =>
   MoviesList :--->
             
 
+
+ 
+
+
+What is fragment =>  <React.fragament> is tag which allows us to wrap multiple elm into dom tree wihout adding extra eln(eg div and all) into tree
+
+npm i react-router-dom => npm package which allows us to dynamic routhing in web page. 
