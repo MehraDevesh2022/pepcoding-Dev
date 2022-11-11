@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { movies } from "../movieData";
 import axios from "axios";
+import { json } from "react-router-dom";
 export class MoviesList extends Component {
 
   constructor(){
@@ -9,7 +10,8 @@ export class MoviesList extends Component {
       hover : "",
       pageArr : [1],
       movieArr : [],
-      currPage : 1
+      currPage : 1,
+      favourites :[]
     }
   }
 
@@ -67,6 +69,26 @@ export class MoviesList extends Component {
     }
   }
 
+  handleAddToFavourite = movieArrObj =>{
+    let oldData = JSON.parse(localStorage.getItem("movie-app") || '[]');
+    if(this.state.favourites.includes(movieArrObj.id)){
+            oldData = oldData.filter((favMovieId) => favMovieId.id !=movieArrObj.id) 
+   }else{
+      oldData.push(movieArrObj); 
+   }
+    localStorage.setItem('movie-app' , JSON.stringify(oldData));
+    this.handleFavouritesState();
+  }
+
+
+  handleFavouritesState =()=>{
+    let oldData = JSON.parse(localStorage.getItem("movie-app") || '[]');
+    let temp = oldData.map((favMovieArr) => favMovieArr.id)
+    this.setState({
+      favourites : [...temp]
+    })
+  }
+
   render() {
 
     return (
@@ -97,7 +119,7 @@ export class MoviesList extends Component {
 
                 <div className="button-wrapper " style={{ display: "flex", justifyContent: "center" }}>
                   {this.state.hover == arrayElm.id && (
-                    <a href="#" className="btn btn-primary movie-button text-center"> Add favourite</a>
+                    <a className="btn btn-primary movie-button text-center" onClick={() => this.handleAddToFavourite(arrayElm)}> {this.state.favourites.includes(arrayElm.id) ? "Remove from favourite" : "Add favourite"}</a>
                   )}
                 </div>
               </div>
