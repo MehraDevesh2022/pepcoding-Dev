@@ -6,29 +6,55 @@ export class Favourite extends Component {
         super();
         this.state={
             genres :[],
-           currGenre : "All genre"
+           currGenre : "All genre",
+           favouriteArr : [] 
         }
     }
    
-   
+    handelDanzerZone = (movie) => {
+
+       
+        let tempData = this.state.favouriteArr.filter((myObj) => {
+            return myObj.id != movie.id
+        })
+        localStorage.setItem('movie-app', JSON.stringify(tempData))
+        this.setState({
+           favouriteArr : [...tempData]
+        })
+        
+      
+
+    }
+
+
    
     render() {
-        let genreIdObj = { "genres": [{ "id": 28, "name": "Action" }, { "id": 12, "name": "Adventure" }, { "id": 16, "name": "Animation" }, { "id": 35, "name": "Comedy" }, { "id": 80, "name": "Crime" }, { "id": 99, "name": "Documentary" }, { "id": 18, "name": "Drama" }, { "id": 10751, "name": "Family" }, { "id": 14, "name": "Fantasy" }, { "id": 36, "name": "History" }, { "id": 27, "name": "Horror" }, { "id": 10402, "name": "Music" }, { "id": 9648, "name": "Mystery" }, { "id": 10749, "name": "Romance" }, { "id": 878, "name": "Science Fiction" }, { "id": 10770, "name": "TV Movie" }, { "id": 53, "name": "Thriller" }, { "id": 10752, "name": "War" }, { "id": 37, "name": "Western" }] }
+        let genreIdObj = { "genres": [{ "id": 28, "name": "Action" }, { "id": 12, "name": "Adventure" }, { "id": 16, "name": "Animation" }, 
+        { "id": 35, "name": "Comedy" }, { "id": 80, "name": "Crime" }, 
+        { "id": 99, "name": "Documentary" }, { "id": 18, "name": "Drama" }, { "id": 10751, "name": "Family" }, 
+        { "id": 14, "name": "Fantasy" }, { "id": 36, "name": "History" }, 
+        { "id": 27, "name": "Horror" }, { "id": 10402, "name": "Music" }, 
+        { "id": 9648, "name": "Mystery" }, 
+        { "id": 10749, "name": "Romance" }, { "id": 878, "name": "Science Fiction" }, 
+        { "id": 10770, "name": "TV Movie" }, { "id": 53, "name": "Thriller" }, 
+        { "id": 10752, "name": "War" }, { "id": 37, "name": "Western" }] }
 
-    // this is for selection section
+        let oldData = JSON.parse(localStorage.getItem('movie-app'));
+      this.state.favouriteArr =[...oldData]
+        // this is for genre type section
         let tempArr = [];
-     movies.results.map((movieObj)=>{
+        this.state.favouriteArr.map((movieObj)=>{
          genreIdObj.genres.map((genreName)=>{
               if(genreName.id === movieObj.genre_ids[0]){
                 tempArr.push(genreName.name);
               }
          })
-     
       
+        
 })         // adding another elm All genere
         tempArr.unshift('All genre')
 
-
+    
         return (
 
 
@@ -64,7 +90,7 @@ export class Favourite extends Component {
                                 </thead>
                                 <tbody>
                                     {
-                                        movies.results.map((movieObj) => (
+                                        this.state.favouriteArr.map((movieObj) => (
                                             <tr>
                                                 <td >
                                                     <img 
@@ -82,7 +108,7 @@ export class Favourite extends Component {
                                                 })}
                                                 <td>{movieObj.popularity}</td>
                                                 <td>{movieObj.vote_average}</td>
-                                                <td>{<button type="button" class="btn btn-danger">Danger</button>}</td>
+                                                <td>{<button type="button" class="btn btn-danger" onClick={()=>this.handelDanzerZone(movieObj)}>Danger</button>}</td>
                                             </tr>
                                         ))
                                     }
