@@ -5,30 +5,72 @@ export class Favourite extends Component {
     constructor(){
         super();
         this.state={
-            genres :[],
+            favGenresArr :[],
            currGenre : "All genre",
-           favouriteArr : [] 
+           favMovieArr : [] 
         }
     }
-   
-    handelDanzerZone = (movie) => {
 
-       
-        let tempData = this.state.favouriteArr.filter((myObj) => {
+
+
+   componentDidMount(){
+       let genreIdObj = {
+           "genres": [{ "id": 28, "name": "Action" }, { "id": 12, "name": "Adventure" }, { "id": 16, "name": "Animation" },
+           { "id": 35, "name": "Comedy" }, { "id": 80, "name": "Crime" },
+           { "id": 99, "name": "Documentary" }, { "id": 18, "name": "Drama" }, { "id": 10751, "name": "Family" },
+           { "id": 14, "name": "Fantasy" }, { "id": 36, "name": "History" },
+           { "id": 27, "name": "Horror" }, { "id": 10402, "name": "Music" },
+           { "id": 9648, "name": "Mystery" },
+           { "id": 10749, "name": "Romance" }, { "id": 878, "name": "Science Fiction" },
+           { "id": 10770, "name": "TV Movie" }, { "id": 53, "name": "Thriller" },
+           { "id": 10752, "name": "War" }, { "id": 37, "name": "Western" }]
+       }
+
+      let oldStorageData = JSON.parse(localStorage.getItem('movie-app') || []);
+      
+       // this is for genre type section
+       let tempArr = [];
+       oldStorageData.map((movieObj) => {
+       genreIdObj.genres.map((genreName) => {
+               if (genreName.id === movieObj.genre_ids[0]) {
+                   if (tempArr.includes(genreName.name)) {
+                       return
+                   }
+                   else {
+                       tempArr.push(genreName.name);
+                   }
+               }
+           })
+       })         // adding another elm All genere
+       tempArr.unshift('All genre')
+
+       this.setState({
+           favGenresArr : [...tempArr],
+           favMovieArr : [...oldStorageData]
+       })
+
+
+   }
+
+// delete button working =>
+    handelDanzerZone = (movie) => {
+     let tempData = this.state.favMovieArr.filter((myObj) => {
             return myObj.id != movie.id
         })
         localStorage.setItem('movie-app', JSON.stringify(tempData))
         this.setState({
-           favouriteArr : [...tempData]
+         favMovieArr : [...tempData],
+    
         })
-        
-      
-
     }
 
-
-   
-    render() {
+    // currGenreHandler
+    currGenreHandler = (genreName) => {
+        this.setState({
+            currGenre: genreName
+        })
+    }
+     render() {
         let genreIdObj = { "genres": [{ "id": 28, "name": "Action" }, { "id": 12, "name": "Adventure" }, { "id": 16, "name": "Animation" }, 
         { "id": 35, "name": "Comedy" }, { "id": 80, "name": "Crime" }, 
         { "id": 99, "name": "Documentary" }, { "id": 18, "name": "Drama" }, { "id": 10751, "name": "Family" }, 
@@ -39,33 +81,35 @@ export class Favourite extends Component {
         { "id": 10770, "name": "TV Movie" }, { "id": 53, "name": "Thriller" }, 
         { "id": 10752, "name": "War" }, { "id": 37, "name": "Western" }] }
 
-        let oldData = JSON.parse(localStorage.getItem('movie-app'));
-      this.state.favouriteArr =[...oldData]
-        // this is for genre type section
-        let tempArr = [];
-        this.state.favouriteArr.map((movieObj)=>{
-         genreIdObj.genres.map((genreName)=>{
-              if(genreName.id === movieObj.genre_ids[0]){
-                tempArr.push(genreName.name);
-              }
-         })
-      
-        
-})         // adding another elm All genere
-        tempArr.unshift('All genre')
-
+         let filterArr =[]
+         console.log(this.state.currGenre);
+         if (this.state.currGenre == 'All genre'){
+             filterArr =  this.state.favMovieArr
+         }else{
+               genreIdObj.genres.map((genre)=>{
+                if(genre.name === this.state.currGenre){
+                    console.log("helloooooo");
+                    filterArr = this.state.favMovieArr.filter((movie) =>{
+                          console.log(movie.id);
+                          console.log(genre.id);
+                     return movie.genre_ids[0] == genre.id
+                    })
+                }
+               })
+         }
+         console.log(filterArr);
     
         return (
 
-
-            <div className="main">
+            
+               <div className="main">
                 <div className="row">
                     <div className="col-3">
                         <ul class="list-group genre-selector">
-                        {tempArr.map((generName) =>(
-                          this.state.currGenre === generName ?
-                                <li style={{ backgroundColor:"#3f51b5" , color :"white" , fontWeight : "bolder" , textAlign : "center"}} className="list-group-item">{generName}</li>
-                                : <li style={{ color: "#3f51b5" ,textAlign: "center" }} className="list-group-item">{generName}</li>
+                        {this.state.favGenresArr.map((genreName) =>(
+                          this.state.currGenre === genreName ?
+                                <li style={{ backgroundColor:"#3f51b5" , color :"white" , fontWeight : "bolder" , textAlign : "center"}} className="list-group-item">{genreName}</li>
+                                : <li style={{ color: "#3f51b5", textAlign: "center" }} className="list-group-item" onClick={()=>this.currGenreHandler(genreName)}>{genreName}</li>
                       ))}
                             
                         </ul>
@@ -90,7 +134,7 @@ export class Favourite extends Component {
                                 </thead>
                                 <tbody>
                                     {
-                                        this.state.favouriteArr.map((movieObj) => (
+                                      filterArr.map((movieObj) => (
                                             <tr>
                                                 <td >
                                                     <img 
@@ -112,10 +156,7 @@ export class Favourite extends Component {
                                             </tr>
                                         ))
                                     }
-
-
-
-                                </tbody>
+                             </tbody>
                             </table>
                         </div>
                         <div aria-label="Page navigation example">

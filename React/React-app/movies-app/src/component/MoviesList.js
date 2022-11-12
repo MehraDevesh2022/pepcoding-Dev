@@ -100,6 +100,7 @@ export class MoviesList extends Component {
         </div>
 
         <div className="movies-list">
+          
           {this.state.movieArr.map((arrayElm) => {
             return (
               <div
@@ -112,14 +113,16 @@ export class MoviesList extends Component {
                   src={`https://image.tmdb.org/t/p/original${arrayElm.backdrop_path}`}
                   style={{ height: "40vh", width: "20vw" }}
                   className="card-img-top movie-img"
-                  alt="..."
+                  alt="movies"
                 />
 
                 <h5 className="card-title movie-title">{arrayElm.title}</h5>
-
+                 {/* call handleFavouritesState function  */}
+             
                 <div className="button-wrapper " style={{ display: "flex", justifyContent: "center" }}>
                   {this.state.hover == arrayElm.id && (
-                    <a className="btn btn-primary movie-button text-center" onClick={() => this.handleAddToFavourite(arrayElm)}> {this.state.favourites.includes(arrayElm.id) ? "Remove from favourite" : "Add favourite"}</a>
+                    
+                    <a className="btn btn-primary movie-button text-center" onMouseEnter={this.handleFavouritesState}  onClick={() => this.handleAddToFavourite(arrayElm)} > {this.state.favourites.includes(arrayElm.id) ? "Remove from favourite" : "Add favourite"}</a>
                   )}
                 </div>
               </div>
