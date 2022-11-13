@@ -7,7 +7,8 @@ export class Favourite extends Component {
         this.state={
             favGenresArr :[],
            currGenre : "All genre",
-           favMovieArr : [] 
+           favMovieArr : [] ,
+           currText : ""
         }
     }
 
@@ -69,7 +70,23 @@ export class Favourite extends Component {
         this.setState({
             currGenre: genreName
         })
+ }
+
+
+    sortPopularityDesc = () => {
+        let temp = this.state.favMovieArr
+        temp.sort(function (objA, objB) {
+            return objB.popularity - objA.popularity
+        })
+         this.setState({
+            movies: [...temp]
+        })
     }
+
+
+
+    
+
      render() {
         let genreIdObj = { "genres": [{ "id": 28, "name": "Action" }, { "id": 12, "name": "Adventure" }, { "id": 16, "name": "Animation" }, 
         { "id": 35, "name": "Comedy" }, { "id": 80, "name": "Crime" }, 
@@ -82,22 +99,31 @@ export class Favourite extends Component {
         { "id": 10752, "name": "War" }, { "id": 37, "name": "Western" }] }
 
          let filterArr =[]
-         console.log(this.state.currGenre);
-         if (this.state.currGenre == 'All genre'){
-             filterArr =  this.state.favMovieArr
-         }else{
+      
+        if(this.state.currText ==''){
+            filterArr = this.state.favMovieArr
+        }else{
+            filterArr = this.state.favMovieArr.filter((movieObj)=>{
+                let original_title = movieObj.original_title.toLowerCase();
+                return original_title.includes(this.state.currText.toLowerCase().trim())
+            })
+        }
+        
+        
+        
+        
+        
+         if (this.state.currGenre !== 'All genre'){
                genreIdObj.genres.map((genre)=>{
                 if(genre.name === this.state.currGenre){
-                    console.log("helloooooo");
                     filterArr = this.state.favMovieArr.filter((movie) =>{
-                          console.log(movie.id);
-                          console.log(genre.id);
-                     return movie.genre_ids[0] == genre.id
+                        return movie.genre_ids[0] == genre.id
                     })
                 }
                })
          }
-         console.log(filterArr);
+      
+       
     
         return (
 
@@ -116,7 +142,9 @@ export class Favourite extends Component {
                     </div>
                     <div className="col-9 favourites-table">
                         <div className="row">
-                            <input type="text" className="input-group-text col" />
+                            <input type="text" className="input-group-text col"  placeholder="search"
+                            value={this.state.currText} onChange ={(e) => this.setState({currText : e.target.value})}
+                            />
                             <input type="number" className="input-group-text col" />
                         </div>
 
@@ -127,8 +155,8 @@ export class Favourite extends Component {
                                         <th></th>
                                         <th scope="col">Title</th>
                                         <th scope="col">Genre</th>
-                                        <th scope="col">Popularity</th>
-                                        <th scope="col">Ratting</th>
+                                        <th scope="col"><i class="fa-solid fa-sort-up" onClick={this.sortPopularityDesc}></i >Popularity<i class="fa-solid fa-sort-down"></i></th>
+                                        <th scope="col"><i class="fa-solid fa-sort-up"></i>Ratting<i class="fa-solid fa-sort-down"></i></th>
 
                                     </tr>
                                 </thead>
