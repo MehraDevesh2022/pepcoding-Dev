@@ -73,7 +73,7 @@ export class Favourite extends Component {
  }
 
 
-    sortPopularityDesc = () => {
+    sortPopularityDescending = () => {
         let temp = this.state.favMovieArr
         temp.sort(function (objA, objB) {
             return objB.popularity - objA.popularity
@@ -83,8 +83,35 @@ export class Favourite extends Component {
         })
     }
 
+    sortPopularityAscending =()=>{
+        let temp = this.state.favMovieArr
+        temp.sort(function(objA , objB){
+            return objA.popularity -objB.popularity
+        })
+        this.setState({
+            favMovieArr : [...temp]
+        })
+    }
+  
+    sortRatingDescending = ()=>{
+           let temp = this.state.favMovieArr
+           temp.sort((objA ,objB)=>{
+             return objB.vote_average -objA.vote_average
+           })
+           this.setState({
+            favMovieArr : [...temp]
+           })
+    }
 
-
+    sortRatingAscending =()=>{
+        let temp = this.state.favMovieArr
+        temp.sort((objA ,objB)=>{
+            return objA.vote_average - objB.vote_average
+        })
+        this.setState({
+            favMovieArr : [...temp]
+        })
+    }
     
 
      render() {
@@ -155,8 +182,8 @@ export class Favourite extends Component {
                                         <th></th>
                                         <th scope="col">Title</th>
                                         <th scope="col">Genre</th>
-                                        <th scope="col"><i class="fa-solid fa-sort-up" onClick={this.sortPopularityDesc}></i >Popularity<i class="fa-solid fa-sort-down"></i></th>
-                                        <th scope="col"><i class="fa-solid fa-sort-up"></i>Ratting<i class="fa-solid fa-sort-down"></i></th>
+                                        <th scope="col"><i class="fa-solid fa-sort-up" onClick={this.sortPopularityDescending}></i >Popularity<i class="fa-solid fa-sort-down" onClick={this.sortPopularityAscending}></i></th>
+                                        <th scope="col"><i class="fa-solid fa-sort-up" onClick={this.sortRatingDescending}></i>Ratting<i class="fa-solid fa-sort-down" onClick={this.sortRatingAscending}></i></th>
 
                                     </tr>
                                 </thead>
