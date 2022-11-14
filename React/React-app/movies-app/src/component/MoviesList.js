@@ -7,16 +7,16 @@ export class MoviesList extends Component {
   constructor(){
     super()
     this.state= {
-      hover : "",
-      pageArr : [1],
-      movieArr : [],
-      currPage : 1,
-      favourites :[]
+      hover : "", // this will contain movie id when we hover movielist
+      pageArr : [1], // this stores page number of the project
+      movieArr : [], // this will store all movie fecthing through api call
+      currPage : 1, // this is for page number 
+      favourites :[] // this array stores fav movies strore them into local storage
     }
   }
 
   // componentDidMount method only runs one time in react life cycle when data requird so we need this code responsive for more uses so make new function with same code
- async componentDidMount(){
+ async componentDidMount(){ // used for side effect  
    let res = await axios('https://api.themoviedb.org/3/movie/popular?api_key=4d8e0bed443e8ebba0ce19fbfe2b872c&language=en-US&page=1')
    let movieDataObj = res.data;
   // console.log(movieDataObj.results);
@@ -25,8 +25,10 @@ export class MoviesList extends Component {
    })
   }
 
+
+  // chnage movie function getting all movie data from tdmb api call bcz componentDidMount runs only one time
  changeMovies = async() =>{
-   let res = await axios(`https://api.themoviedb.org/3/movie/popular?api_key=4d8e0bed443e8ebba0ce19fbfe2b872c&language=en-US&page=${this.state.currPage}`)
+   let res = await axios(`https://api.themoviedb.org/3/movie/popular?api_key=4d8e0bed443e8ebba0ce19fbfe2b872c&language=en-US&page=${this.state.currPage}`) // when we click next button then api call will occures for next page movie list
     let movieDataObj = res.data;
     // console.log(movieDataObj.results);
     this.setState({
@@ -34,9 +36,10 @@ export class MoviesList extends Component {
     })
   }
 
+
+  // handle next => when we click next page currPage state will change and changeMovies function will call for fetching new page data
   handleNextPage = ()=>{
-    console.log(this.state.currPage);
-    console.log(this.state.pageArr.length );
+    // pageArr.length and state.currPage then we will add new value on tempArry for showing number into screen
     if(this.state.pageArr.length === this.state.currPage){
       let tempArr = [];
       for (let i = 1; i <= this.state.pageArr.length + 1; i++) {
@@ -53,23 +56,25 @@ export class MoviesList extends Component {
     }
   }
 
+  // vice versa of handle next
   handlePreviousPage = ()=>{
     if(this.state.currPage !=1){
       this.setState({
         currPage: this.state.currPage-1
-      }, this.changeMovies)
+      }, this.changeMovies) // this is how the function calling for fetching data after handlePreviousPage states are change
     }
   }
-
+// when we are clicking number of page then we will render on that page
   handleValuePage =(pageValue)=>{
     if(pageValue != this.state.currPage){
       this.setState({
         currPage : pageValue
-      },this.changeMovies)
+      }, this.changeMovies) // calling changeMovies function after chaining state of currPage value with selected number 
     }
   }
 
-  handleAddToFavourite = movieArrObj =>{
+  // this function first check data from local storage  if found then already into list then ignore else store and upadte local storage and chnange the state of favourites array
+  handleAddToFavourite = (movieArrObj) =>{
     let oldData = JSON.parse(localStorage.getItem("movie-app") || '[]');
     if(this.state.favourites.includes(movieArrObj.id)){
             oldData = oldData.filter((favMovieId) => favMovieId.id !=movieArrObj.id) 
@@ -77,10 +82,11 @@ export class MoviesList extends Component {
       oldData.push(movieArrObj); 
    }
     localStorage.setItem('movie-app' , JSON.stringify(oldData));
+    // calling the function for chaning the state of  favourites array 
     this.handleFavouritesState();
   }
 
-
+// this is for favourites array state change after update fav movie into local storage 
   handleFavouritesState =()=>{
     let oldData = JSON.parse(localStorage.getItem("movie-app") || '[]');
     let temp = oldData.map((favMovieArr) => favMovieArr.id)
@@ -110,18 +116,19 @@ export class MoviesList extends Component {
                 onMouseLeave= {() => this.setState({hover : ''})}
               >
                 <img
+                // completeing the path for   diffrent movie  image using backdrop_path using movie obj  
                   src={`https://image.tmdb.org/t/p/original${arrayElm.backdrop_path}`}
                   style={{ height: "40vh", width: "20vw" }}
                   className="card-img-top movie-img"
                   alt="movies"
                 />
-
-                <h5 className="card-title movie-title">{arrayElm.title}</h5>
-                 {/* call handleFavouritesState function  */}
-             
-                <div className="button-wrapper " style={{ display: "flex", justifyContent: "center" }}>
-                  {this.state.hover == arrayElm.id && (
-                    
+                    {/* movie title from movie array obj   */}
+                <h5 className="card-title movie-title">{arrayElm.title}</h5> 
+                
+             <div className="button-wrapper " style={{ display: "flex", justifyContent: "center" }}>
+                     {/* if hover and movie id is equal then show fav button on the movie card */}
+                   {this.state.hover == arrayElm.id && (
+                    // onMouseEnter in movie card and calling handleFavouritesState bcz initialy favourites array value is empty so if any movie already in fav list then it will show remove to list else add to favourites
                     <a className="btn btn-primary movie-button text-center" onMouseEnter={this.handleFavouritesState}  onClick={() => this.handleAddToFavourite(arrayElm)} > {this.state.favourites.includes(arrayElm.id) ? "Remove from favourite" : "Add favourite"}</a>
                   )}
                 </div>
