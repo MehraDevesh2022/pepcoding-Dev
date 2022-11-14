@@ -1,8 +1,13 @@
+import axios from "axios";
 import React, { Component } from "react";
 import {movies} from '../movieData'
 export class Banner extends Component {
+
+
+ 
   render() {
     let randomNum = Math.floor(Math.random() * movies.results.length)
+     
     return (
         <div className="card banner-card">
         <img src={`https://image.tmdb.org/t/p/original${movies.results[randomNum].poster_path}` } className="card-img-top banner-img" alt="..."/>
