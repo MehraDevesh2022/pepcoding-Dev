@@ -3,7 +3,7 @@ export class Todo extends React.Component {
   constructor() {
     super();
     this.state = {
-      tasks: [],
+      tasks: [],// value will be obj [{task : "make todo app" , id : 1}]
       currTask: "",
     };
 

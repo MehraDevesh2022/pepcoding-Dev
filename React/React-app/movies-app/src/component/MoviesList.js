@@ -44,6 +44,7 @@ export class MoviesList extends Component {
       let tempArr = [];
       for (let i = 1; i <= this.state.pageArr.length + 1; i++) {
         tempArr.push(i);
+        
       }
       this.setState({
         pageArr: [...tempArr],

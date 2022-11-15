@@ -33,7 +33,7 @@ export class Favourite extends Component {
        let tempArr = [];
        oldStorageData.map((movieObj) => {
        genreIdObj.genres.map((genreName) => {
-        // agar pehle se 
+        //  agar genre name pehle se tempArr main hai to return ho jao
                if (genreName.id === movieObj.genre_ids[0]) {
                    if (tempArr.includes(genreName.name)) {
                        return
