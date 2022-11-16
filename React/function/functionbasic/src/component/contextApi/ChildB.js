@@ -1,11 +1,14 @@
-import React from "react";
+import React ,{useContext} from "react";
+import context from "./context";
 import ChildC from "./ChildC";
-function ChildB({firstName , lastName}){
-    return(
-        <>
-        <h3>this is from ChildB</h3>
-        <ChildC  firstName ={firstName} lastName ={lastName}/>
-        </>
-    )
+
+function ChildB() {
+  return(
+
+    <>
+    <h3>this is ChildB</h3>
+    <ChildC/>
+    </>
+  )
 }
-export default ChildB 
+export default ChildB

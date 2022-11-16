@@ -1,10 +1,16 @@
-import React from "react";
-function ChildC({firstName , lastName}){
-   return(
-  <>
-           <h1 style={{background : "blue" , color : "red"}}>this is from Childc</h1>
-           <h2>My first name is <strong style={{color : "blue"}}>{firstName}</strong> and last name is <strong style={{color :"red"}}>{lastName}</strong></h2>
-  </>
-   )
+import React , {useContext} from "react";
+import context from "./context";
+function ChildC(){
+ let {firstName , lastName} = useContext(context) 
+ return(
+<>
+
+
+         <h1> this is ChildC</h1>
+         <h1 style={{ color: "red" }}>{firstName}</h1>
+         <h1 style={{ color: "blue" }}>{lastName}</h1>
+</>
+ 
+ )
 }
-export default ChildC
+export  default ChildC

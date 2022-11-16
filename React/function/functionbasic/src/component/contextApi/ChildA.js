@@ -1,12 +1,12 @@
 import React from "react";
 import ChildB from "./ChildB";
 
-function ChildA({firstName , lastName}){
- return(
-     <>
-         <h3>This is from ChildA</h3>
-         <ChildB firstName={firstName} lastName={lastName} />
-     </>
- )
+function ChildA() {
+   return(
+    <>
+    <h2>this is ChildA</h2>
+    <ChildB/>
+    </>
+   )
 }
 export default ChildA
