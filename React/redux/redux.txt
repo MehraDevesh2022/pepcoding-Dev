@@ -3,3 +3,21 @@ let say some component requird login state for them a state stores in common sto
 
 benifits is reduce the prop drilling 
 also common storage access
+
+
+
+useReducer ==> these things available in useReducer
+
+reducer
+Initial state
+dispatch
+action
+type
+payload
+
+reducer => its function and it perfrom all the data manuplation logic.
+Initial=>state => your state when your app intitally render
+dispatch => it is a function which one use for pass action object to the reducer function when action occures into the component
+action => this is object passed by dispatch it contains type and payload
+type => its string value for perticuler action
+payload => it has value
