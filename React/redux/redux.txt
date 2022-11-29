@@ -1,0 +1,5 @@
+redux provide global access of some state.
+let say some component requird login state for them a state stores in common storage. and  available for evry component its use of redux
+
+benifits is reduce the prop drilling 
+also common storage access
