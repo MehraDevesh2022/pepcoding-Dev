@@ -21,3 +21,9 @@ dispatch => it is a function which one use for pass action object to the reducer
 action => this is object passed by dispatch it contains type and payload
 type => its string value for perticuler action
 payload => it has value
+
+
+redux => single source of truth.. it mean for every state change only on storage
+
+flow => 
+Initial-state---> reducer ----> storage(stores state changes its global)---> conecter(connect storage to component)--->component--->dispatch --->reducer(repeat) same way bcz its unidirction
