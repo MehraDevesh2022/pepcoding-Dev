@@ -1,5 +1,6 @@
 import React,{useReducer} from 'react'
-
+// this is function reducer take dispatch object value and state
+// it provides all action in one function
 function redcuer(state ,action){
     console.log("hello");
     switch (action.type) {
@@ -15,15 +16,15 @@ function redcuer(state ,action){
 
 
 function Ball2() {
- const[ball , dispatch] = useReducer(redcuer ,10);
+  const [ball, dispatch] = useReducer(redcuer, 10); // useReducer takses reducer function and intial value
 
   return (
     <>
       <div>Ball2 eg :</div>
       <h1>we total have Balls : {ball}</h1>
-      <button onClick={()=>dispatch ({type : "increment"})}>+</button>
-      <button onClick={()=>dispatch ({type : "decrement"})}>-</button>
-
+      {/* passing the parameter as type object into dispatch and call reducer */}
+      <button onClick={() => dispatch({ type: "increment" })}>+</button> 
+      <button onClick={() => dispatch({ type: "decrement" })}>-</button>
     </>
   );
 }
