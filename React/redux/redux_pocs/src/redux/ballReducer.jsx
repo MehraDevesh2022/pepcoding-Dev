@@ -8,7 +8,7 @@ function ballReducer(state = inititalState, action) {
       return {
         balls : state.balls + 1
       }
-      break;
+      break; 
     case "decrement":
       return{
         balls : state.balls - 1
