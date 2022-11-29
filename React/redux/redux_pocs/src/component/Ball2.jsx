@@ -20,7 +20,7 @@ function Ball2() {
 
   return (
     <>
-      <div>Ball2 eg :</div>
+      <h1 > with reduer =></h1>
       <h1>we total have Balls : {ball}</h1>
       {/* passing the parameter as type object into dispatch and call reducer */}
       <button onClick={() => dispatch({ type: "increment" })}>+</button> 

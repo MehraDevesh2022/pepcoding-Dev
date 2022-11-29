@@ -14,7 +14,8 @@ function Ball(){
 
   return (
     <>
-      <h1>We have Balls : {ball}</h1>
+        <h1>With useState</h1>
+      <h2>We have Balls : {ball}</h2>
       <button onClick={increment}>+</button>
       <button onClick={decrement}>-</button>
     </>
