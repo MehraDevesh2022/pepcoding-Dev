@@ -14,10 +14,18 @@ function reducer(state , action){
         }
         break;
         case "sell_bat" : 
-        return{
-            bat : state.bat - Number(state.value),
-            value : ""
-        }
+        if (state.bat - Number(state.value) <0){
+          return {
+            bat: "Oops snap ! No More Bat Found",
+            value: "",
+          }
+        } else
+         {
+           return {
+             bat: state.bat - Number(state.value),
+             value: "",
+           }
+         }
         break;
         case "set_value":
             return {

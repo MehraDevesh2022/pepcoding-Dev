@@ -15,15 +15,36 @@ action
 type
 payload
 
-reducer => its function and it perfrom all the data manuplation logic.
-Initial=>state => your state when your app intitally render
+reducer => its a function it perfrom all the data manuplation logic.
+Initial-state => your state value when your app intitally render
 dispatch => it is a function which one use for pass action object to the reducer function when action occures into the component
 action => this is object passed by dispatch it contains type and payload
-type => its string value for perticuler action
+type => its storing string for perticuler action
 payload => it has value
 
 
-redux => single source of truth.. it mean for every state change only on storage
+redux => single source of truth.. it mean for every state change only one storage
 
 flow => 
-Initial-state---> reducer ----> storage(stores state changes its global)---> conecter(connect storage to component)--->component--->dispatch --->reducer(repeat) same way bcz its unidirction
+Initial-state --> stores intital value as an object for component
+||
+reducer --> first take Initial-state as state and retruns into the stores when called
+||
+stores --> it  call reducer and get value from it and stores that value into variable and exports
+||
+app --> app use Provider(provided by redux) and wrap component on it and passed the store variable
+||
+connect()--> connect method(provided by redux) connected to the Provider into app.js and get stores value
+              it have two method =>
+              1 : 1 mapStateToProps => provides the state of variable from store and passed into the ball component as props.intitally mapStateToProps used.
+
+                  2 mapDispatchToProps => it has dispacth and dispacth and passed to the props as obj. and it will make sure whenevr changeOccures into the component value it connect to the reducer for action with the perticluer chnage and passed payload and type as action                      
+
+||
+reducer()--> mapDispatchToProps call reducer and passed action . using that action state change and passed to the stores .
+||
+store --> strore exports store variable
+||
+Provider--> passed store variable all component in app.js
+||
+connect() --> connect get value and used method mapStateToProps and mapStateToProps passed value as props to the component and changed  value render to the application

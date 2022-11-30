@@ -6,6 +6,7 @@ import React from "react";
 import Ball from "./redux/Ball";
 import {Provider} from "react-redux"
 import store from "./store";
+import Bat from "./redux/Bat";
 function App() {
   return (
     // <>
@@ -18,6 +19,7 @@ function App() {
     {/* wraping Ball with provider and passed state value from store it will access by ball component using connect.provider and connect  provide by redux  */}
     <Provider store={store}>
         <Ball></Ball>
+        <Bat></Bat>
     </Provider>
     </>
   );
