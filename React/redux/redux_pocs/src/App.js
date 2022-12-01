@@ -8,6 +8,7 @@ import {Provider} from "react-redux"
 import store from "./store";
 import BatRedux from "./component/BatRedux"
 import BallRedux from "./component/BallRedux"
+import User from "./component/User";
 function App() {
   return (
     // <>
@@ -21,6 +22,7 @@ function App() {
     <Provider store={store}>
         <BatRedux></BatRedux>
         <BallRedux></BallRedux>
+        <User></User>
     </Provider>
     </>
   );
