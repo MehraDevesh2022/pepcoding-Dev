@@ -9,6 +9,7 @@ import store from "./store";
 import BatRedux from "./component/BatRedux"
 import BallRedux from "./component/BallRedux"
 import User from "./component/User";
+import UserAsync from "./component/asyncUser/UserAsync";
 function App() {
   return (
     // <>
@@ -16,13 +17,14 @@ function App() {
     // <Ball2></Ball2>
     // <Bat></Bat>
     // <Bat2></Bat2>
+     //  <User></User>
     // </>
     <>
     {/* wraping Ball with provider and passed state value from store it will access by ball component using connect.provider and connect  provide by redux  */}
     <Provider store={store}>
         <BatRedux></BatRedux>
         <BallRedux></BallRedux>
-        <User></User>
+         <UserAsync></UserAsync>
     </Provider>
     </>
   );
