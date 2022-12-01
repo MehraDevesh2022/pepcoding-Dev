@@ -29,10 +29,10 @@ function batReducer(  state  = inititalState , action) {
             }
          }
          default :
-            return state
+            return state // when initial value render to the app. at the very start
                 
         
 }
 }
 
-export default batReducer
+export default batReducer // access to the rootReducer then store

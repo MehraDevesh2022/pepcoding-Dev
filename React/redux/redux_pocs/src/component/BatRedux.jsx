@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-function Bat(props) {
+function BatRedux(props) {
     console.log(props);
   return (
    <>
@@ -19,7 +19,7 @@ function Bat(props) {
 }
 
 function mapStateToProps(store){
-    return store // this store object access by props in Ball
+  return store.Bat; // this store object access by BatRedux props
 }
 
 function  mapDispatchToProps(dispatch){
@@ -47,7 +47,16 @@ function  mapDispatchToProps(dispatch){
     };
 }
 
+/*
+firts way to write this higher order function =>
+
+const connectedWithBat = connect(mapStateToProps, mapDispatchToProps)(BatRedux);
+export default connectedWithBat;
+
+*/
+
+// secondWay :=>
 const connectedWithPropsFns = connect(mapStateToProps, mapDispatchToProps);
-const connectedWithBat = connectedWithPropsFns(Bat);
+const connectedWithBat = connectedWithPropsFns(BatRedux);
 
 export default connectedWithBat;

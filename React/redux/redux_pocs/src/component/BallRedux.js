@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 import {connect} from "react-redux"
-function Ball(props) { // props is  store state retrun by mapStateToProps
+function BallRedux(props) { // props is  store state retrun by mapStateToProps
   return (
     <>
       <h1>Balls</h1>
@@ -12,7 +12,7 @@ function Ball(props) { // props is  store state retrun by mapStateToProps
 }
 // this function get state varibale from store 
 function mapStateToProps(store){
-  return store
+  return store.Ball
 } 
 function mapDispatchToProps(dispatch){
     return{
@@ -35,11 +35,11 @@ function mapDispatchToProps(dispatch){
 
 
 //first way write ==>
-// export default connect(mapStateToProps ,mapDispatchToProps)(Ball)
+// export default connect(mapStateToProps ,mapDispatchToProps)(BallRedux)
 
 // second way to write higher order function
 const connectdWIthpropsFns = connect(mapStateToProps, mapDispatchToProps);
-const connectedWithBall = connectdWIthpropsFns(Ball);
+const connectedWithBall = connectdWIthpropsFns(BallRedux);
 export default connectedWithBall;
 
 // connect() method connecting to the store variable through the Provider at app.js
